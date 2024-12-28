@@ -1,0 +1,71 @@
+/* Center the calendar container */
+.calendar-container {
+    padding: 40px;
+    text-align: center;
+    font-family: 'Arial, sans-serif';
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    margin: 50px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Style for the calendar */
+  .custom-calendar {
+    margin: 0 auto;
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Highlight today's date */
+  .custom-calendar .react-calendar__tile--now {
+    background: #e7f3ff;
+    border-radius: 50%;
+    color: #007bff;
+    font-weight: bold;
+  }
+  
+  /* Style selected date */
+  .custom-calendar .react-calendar__tile--active {
+    background: #007bff;
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+  }
+  
+  /* Hover effect for tiles */
+  .custom-calendar .react-calendar__tile:hover {
+    background: #f0f0f0;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
+  /* Navigation buttons */
+  .custom-calendar .react-calendar__navigation button {
+    color: #007bff;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 8px;
+    margin: 0 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: #f9f9f9;
+    transition: background-color 0.3s ease;
+  }
+  
+  .custom-calendar .react-calendar__navigation button:hover {
+    background-color: #e7f3ff;
+  }
+  
+  /* Selected date display */
+  .selected-date {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #333;
+  }
+  
