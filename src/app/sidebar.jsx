@@ -34,11 +34,12 @@ export default function Page({ selected }) {
                         </h5>
                         <h5 className={`flex items-center ${isSelected('Bookings')}`}>
                             <LuCalendarCheck />
-                            <span className='mx-2'>Bookings</span>
+                                <span className='mx-2'> <Link href='/bookings'>Bookings</Link>  </span>
+
                         </h5>
                         <h5 className={`flex items-center ${isSelected('User Management')}`}>
                             <LuCalendarCheck />
-                            <span className='mx-2'>User Management</span>
+                            <span className='mx-2'> <Link href='/user'></Link> User Management</span>
                         </h5>
                     </div>
                 </div>

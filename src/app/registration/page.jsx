@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react';
 import Image from 'next/image';
 import regimg from '../../../public/registration.png';
@@ -28,7 +30,7 @@ export default function page() {
     };
 
 
-    
+
     return (
         <div className='grid grid-cols-2'>
             <div>

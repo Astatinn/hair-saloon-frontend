@@ -3,7 +3,7 @@
 import React, { useState, createContext } from 'react';
 import Sidebar from '../sidebar';
 import { FaPlus } from "react-icons/fa6";
-import PopupForm from '../Popup';
+import PopupForm from '../detailForm/page';
 
 export const ServicesContext = createContext();
 
