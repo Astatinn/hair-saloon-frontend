@@ -1,8 +1,11 @@
-import React from 'react';
+"use client";
+
+import React, { useState } from 'react';
 import Sidebar from '../sidebar';
 import { FaPlus } from "react-icons/fa6";
 import member1 from '../../../public/img1.png'; // This is the static image for now, replace with dynamic if needed
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Page() {
 
@@ -13,8 +16,14 @@ export default function Page() {
         { mem: 'member1', heading: 'Jenny Wilson3', description: 'Master Hairstylists' },
     ];
 
+    const [selectedCard, setSelectedCard] = useState(null);
+
+    const handleCardSelect = (index) => {
+        setSelectedCard(index);
+    };
+
     return (
-        <div className="min-h-screen flex justify-center  bg-white text-black">
+        <div className="min-h-screen flex justify-center bg-white text-black">
             <div className="col-span-5 flex flex-col">
                 <h1 className="text-center text-4xl mt-8">Choose a hairstylist</h1>
 
@@ -22,7 +31,12 @@ export default function Page() {
                     <div className="grid grid-cols-4 gap-6">
                         {/* Mapping over the data */}
                         {data.map((item, index) => (
-                            <div key={index} className="relative mb-10">
+                            <div
+                                key={index}
+                                onClick={() => handleCardSelect(index)}
+                                className={`relative mb-10 border-2 ${selectedCard === index ? 'border-orange-500 ' : ''
+                                    } rounded-lg overflow-hidden cursor-pointer transition-all duration-300`}
+                            >
                                 <Image
                                     src={member1} // Replace with dynamic images for each member
                                     alt={item.heading}
@@ -38,13 +52,19 @@ export default function Page() {
                 </div>
 
                 {/* Button Container */}
-                <div className="flex justify-center items-center  gap-14 mb-24">
+                <div className="flex justify-center items-center gap-14 mb-24">
                     <button className="px-6 py-3 px-28 border rounded-md">
                         Anyone is Fine
                     </button>
-                    <button className="px-6 py-3 px-36 bg-orange-600 text-white rounded-md hover:bg-orange-700">
-                        Next
-                    </button>
+                    <Link href={selectedCard !== null ? '/calendar' : '#'}>
+                        <button
+                            className={`px-6 py-3 px-36 bg-orange-600 text-white rounded-md hover:bg-orange-700 ${selectedCard === null ? 'opacity-50 cursor-not-allowed' : ''
+                                }`}
+                            disabled={selectedCard === null}
+                        >
+                            Next
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>

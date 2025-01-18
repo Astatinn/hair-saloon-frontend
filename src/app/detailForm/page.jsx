@@ -82,7 +82,7 @@ export default function Page() {
                     <strong>Service:</strong> {service || "Not specified"}
                 </div>
                 <div className="mb-2">
-                    <strong>Email:</strong> {time || "Not specified"}
+                    <strong>Hairstylist:</strong> {time || "Not specified"}
                 </div>
                 <div className="mb-2">
                     <strong>Phone:</strong> {price || "Not specified"}

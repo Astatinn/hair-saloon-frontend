@@ -16,7 +16,7 @@ const BookingsPage = () => {
 
   return (
     <div className="grid grid-cols-6 divide-x bg-white text-black h-full">
-      <Sidebar />
+      <Sidebar selected='Bookings' />
       <div className="ps-4 pt-6 col-span-5">
         <h1 className="text-3xl font-bold mb-6">Your Bookings</h1>
         <div>

@@ -6,41 +6,42 @@ import { LuCalendarCheck } from "react-icons/lu";
 import { MdLogout } from "react-icons/md";
 import Link from 'next/link';
 
-export default function Page({ selected }) {
-
+export default function Sidebar({ selected }) {
     const isSelected = (option) => (
         selected === option ? 'font-bold' : 'font-normal'
     );
 
+    // Define menu options for each role
+    const menuOptions = {
+        admin: [
+            { name: 'Dashboard', icon: <MdOutlineDashboard />, link: '/dashboard' },
+            { name: 'Services', icon: <FaRegClipboard />, link: '/services' },
+            { name: 'Hairstylists', icon: <FiScissors />, link: '/hairstylist' },
+            { name: 'Bookings', icon: <LuCalendarCheck />, link: '/bookings' },
+            { name: 'User Management', icon: <LuCalendarCheck />, link: '/user' },
+        ],
+        cashier: [
+            { name: 'Dashboard', icon: <MdOutlineDashboard />, link: '/dashboard' },
+            { name: 'Bookings', icon: <LuCalendarCheck />, link: '/bookings' },
+            { name: 'Calendar', icon: <LuCalendarCheck />, link: '/calendar' },
+        ],
+    };
+
+    // Get the appropriate menu options based on role
+    const options = menuOptions.cashier || [];
 
     return (
         <div className='grid grid-cols-1 divide-x bg-white text-black h-full'>
-            {/* Sidebar */}
             <div className='ps-8 flex flex-col justify-between'>
                 <div>
                     <h1 className='text-4xl mt-3'>LOGO</h1>
                     <div className='mt-14 space-y-5 text-lg'>
-                        <h5 className={`flex items-center ${isSelected('Dashboard')}`}>
-                            <MdOutlineDashboard />
-                            <span className='mx-2'> <Link href='/dashboard'>Dashboard</Link>  </span>
-                        </h5>
-                        <h5 className={`flex items-center ${isSelected('Services')}`}>
-                            <FaRegClipboard />
-                            <span className='mx-2'> <Link href='/services'>Services</Link> </span>
-                        </h5>
-                        <h5 className={`flex items-center ${isSelected('Hairstylists')}`}>
-                            <FiScissors />
-                            <span className='mx-2'> <Link href='/hairstylist'>Hairstylists</Link>  </span>
-                        </h5>
-                        <h5 className={`flex items-center ${isSelected('Bookings')}`}>
-                            <LuCalendarCheck />
-                                <span className='mx-2'> <Link href='/bookings'>Bookings</Link>  </span>
-
-                        </h5>
-                        <h5 className={`flex items-center ${isSelected('User Management')}`}>
-                            <LuCalendarCheck />
-                            <span className='mx-2'> <Link href='/user'></Link> User Management</span>
-                        </h5>
+                        {options.map((item, index) => (
+                            <h5 key={index} className={`flex items-center ${isSelected(item.name)}`}>
+                                {item.icon}
+                                <span className='mx-2'><Link href={item.link}>{item.name}</Link></span>
+                            </h5>
+                        ))}
                     </div>
                 </div>
                 <div className='mb-8 flex items-center space-x-3'>
@@ -48,9 +49,6 @@ export default function Page({ selected }) {
                     <h5 className='flex items-center text-xl'>Logout</h5>
                 </div>
             </div>
-
-            {/* Main Content */}
-
         </div>
     );
 }

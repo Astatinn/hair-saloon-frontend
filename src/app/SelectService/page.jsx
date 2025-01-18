@@ -1,36 +1,50 @@
-import React from 'react';
+"use client";
+
+import React, { useState } from 'react';
 import Sidebar from '../sidebar';
 import { FaPlus } from "react-icons/fa6";
-import member1 from '../../../public/service1.png'; // This is the static image for now, replace with dynamic if needed
+import member1 from '../../../public/Service1.png';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Page() {
 
+    const [selectedCard, setSelectedCard] = useState(null);
+
     const data = [
-        { mem: 'member1', heading: 'Jenny Wilson', description: 'Master Hairstylists' },
-        { mem: 'member1', heading: 'Jenny Wilson1', description: 'Master Hairstylists' },
-        { mem: 'member1', heading: 'Jenny Wilson2', description: 'Master Hairstylists' },
-        { mem: 'member1', heading: 'Jenny Wilson3', description: 'Master Hairstylists' },
+        { serviceName: 'Haircut', time: '1 Hour', price: '10' },
+        { serviceName: 'Haircut', time: '1 Hour', price: '10' },
+        { serviceName: 'Haircut', time: '1 Hour', price: '10' },
+        { serviceName: 'Haircut', time: '1 Hour', price: '10' },
     ];
 
+    const handleCardSelect = (index) => {
+        setSelectedCard(index);
+    };
+
     return (
-        <div className="min-h-screen flex justify-center  bg-white text-black">
+        <div className="min-h-screen flex justify-center bg-white text-black">
             <div className="col-span-5 flex flex-col">
                 <h1 className="text-center text-4xl mt-8">Choose a Service</h1>
 
-                <div className="flex-grow flex items-center justify-center">
-                    <div className="grid grid-cols-4 gap-6">
+                <div className="flex-grow mx-4 mt-5 flex items-center justify-center">
+                    <div className="grid sm:grid-cols-4 gap-3">
                         {/* Mapping over the data */}
                         {data.map((item, index) => (
-                            <div key={index} className="relative mb-10">
+                            <div
+                                key={index}
+                                onClick={() => handleCardSelect(index)} // Click handler for selection
+                                className={`relative mb-10 border-2 ${selectedCard === index ? 'border-orange-500' : 'border-transparent'
+                                    } rounded-lg overflow-hidden cursor-pointer transition-all duration-300`}
+                            >
                                 <Image
                                     src={member1} // Replace with dynamic images for each member
-                                    alt={item.heading}
+                                    alt={item.serviceName}
                                     className="w-full h-80 object-cover rounded-lg"
                                 />
-                                <div className="absolute bottom-5 left-0 right-0 bg-slate-50 mx-4 text-center px-10 py-2 rounded-lg">
-                                    <h1>{item.heading}</h1>
-                                    <p>{item.description}</p>
+                                <div className="absolute text-white top-0 right-34 ps-4 py-2 rounded-lg">
+                                    <h1 className='text-3xl flex items-center'>{item.serviceName} <p className='text-xl mx-4'>{item.time}</p></h1>
+                                    <p className='text-4xl font-bold'>${item.price}</p>
                                 </div>
                             </div>
                         ))}
@@ -38,10 +52,16 @@ export default function Page() {
                 </div>
 
                 {/* Button Container */}
-                <div className="flex justify-center items-center  gap-14 mb-24">
-                    <button className="px-6 py-3 px-36 bg-orange-600 text-white rounded-md hover:bg-orange-700">
-                        Next
-                    </button>
+                <div className="flex justify-center items-center gap-14 mb-24">
+                    <Link href={selectedCard !== null ? '/SelectHairstylist' : '#'}>
+                        <button
+                            className={`px-32 py-3 px-36 bg-orange-600 text-white rounded-md hover:bg-orange-700 ${selectedCard === null ? 'opacity-50 cursor-not-allowed' : ''
+                                }`}
+                            disabled={selectedCard === null} // Disable button if no card is selected
+                        >
+                            Next
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>
